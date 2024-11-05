@@ -85,6 +85,7 @@
         
         <!-- Nội dung của từng thẻ -->
         <div 
+
             <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,7 +135,7 @@
                             <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
                             <td>Mức lương:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
-                            <td><button class="btn btn-primary" onclick="addExtraJob()">Thêm việc làm</button></td>
+                            <td><button class="btn btn-primary" onclick="addExtraJob(this)">Thêm việc làm</button></td>
                         </tr>
                     </table>
                 </div>
@@ -149,7 +150,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
                             <td>Số lượng:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
-                            <td><button class="btn btn-primary" onclick="addStock()">Thêm mã cổ phiếu</button></td>
+                            <td><button class="btn btn-primary" onclick="addStock(this)">Thêm mã cổ phiếu</button></td>
                         </tr>
                     </table>
                 </div>
@@ -164,7 +165,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
                             <td>Dòng tiền:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addRealEstate()">Thêm mã bất động sản</button></td>
+                            <td><button class="btn btn-primary" onclick="addRealEstate(this)">Thêm mã bất động sản</button></td>
                         </tr>
                     </table>
                 </div>
@@ -179,7 +180,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
                             <td>Dòng tiền:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addBusiness()">Thêm mã doanh nghiệp</button></td>
+                            <td><button class="btn btn-primary" onclick="addBusiness(this)">Thêm mã doanh nghiệp</button></td>
                         </tr>
                     </table>
                 </div>
@@ -199,21 +200,23 @@
 </div>
 
 <script>
-    function addExtraJob() {
-        const container = document.getElementById('extra-jobs-container');
+    function addExtraJob(button) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>Việc làm thêm:</td>
             <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
             <td>Mức lương:</td>
             <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
-            <td><button class="btn btn-primary" onclick="addExtraJob()">Thêm việc làm</button></td>
+            <td>
+                <button class="btn btn-primary" onclick="addExtraJob(this)">Thêm việc làm</button>
+                <button class="btn btn-danger" onclick="removeRow(this)">Xoá việc làm</button>
+            </td>
         `;
-        container.querySelector('table').appendChild(row);
+        button.closest('table').appendChild(row);
+        button.style.display = 'none';
     }
 
-    function addStock() {
-        const container = document.getElementById('stocks-container');
+    function addStock(button) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>Mã:</td>
@@ -222,13 +225,16 @@
             <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
             <td>Số lượng:</td>
             <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
-            <td><button class="btn btn-primary" onclick="addStock()">Thêm mã cổ phiếu</button></td>
+            <td>
+                <button class="btn btn-primary" onclick="addStock(this)">Thêm mã cổ phiếu</button>
+                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã cổ phiếu</button>
+            </td>
         `;
-        container.querySelector('table').appendChild(row);
+        button.closest('table').appendChild(row);
+        button.style.display = 'none';
     }
 
-    function addRealEstate() {
-        const container = document.getElementById('real-estate-container');
+    function addRealEstate(button) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>Mã:</td>
@@ -237,13 +243,16 @@
             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
             <td>Dòng tiền:</td>
             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-            <td><button class="btn btn-primary" onclick="addRealEstate()">Thêm mã bất động sản</button></td>
+            <td>
+                <button class="btn btn-primary" onclick="addRealEstate(this)">Thêm mã bất động sản</button>
+                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã bất động sản</button>
+            </td>
         `;
-        container.querySelector('table').appendChild(row);
+        button.closest('table').appendChild(row);
+        button.style.display = 'none';
     }
 
-    function addBusiness() {
-        const container = document.getElementById('business-container');
+    function addBusiness(button) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>Mã:</td>
@@ -252,15 +261,31 @@
             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
             <td>Dòng tiền:</td>
             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-            <td><button class="btn btn-primary" onclick="addBusiness()">Thêm mã doanh nghiệp</button></td>
+            <td>
+                <button class="btn btn-primary" onclick="addBusiness(this)">Thêm mã doanh nghiệp</button>
+                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã doanh nghiệp</button>
+            </td>
         `;
-        container.querySelector('table').appendChild(row);
+        button.closest('table').appendChild(row);
+        button.style.display = 'none';
+    }
+
+    function removeRow(button) {
+        const row = button.closest('tr');
+        const table = row.closest('table');
+        row.remove();
+
+        // Hiển thị lại nút "Thêm" trên hàng trên nếu có
+        const lastRow = table.querySelector('tr:last-child');
+        const addButton = lastRow.querySelector('.btn-primary');
+        if (addButton) addButton.style.display = 'inline-block';
     }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
         </div>
 
