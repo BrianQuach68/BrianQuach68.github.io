@@ -45,14 +45,14 @@
 </head>
 <body>
 
-    <!-- Bước 1: Nhập thông tin cá nhân -->
+    <!-- Bước 1: Đăng nhập -->
     <div id="step1">
-        <h2>Bước 1: Nhập thông tin</h2>
-        <label for="name">Họ và tên:</label>
-        <input type="text" id="name" required><br><br>
-        <label for="phone">Số điện thoại:</label>
-        <input type="text" id="phone" required><br><br>
-        <button class="button" onclick="goToStep2()">Tiếp tục</button>
+        <h2>Bước 1: Đăng nhập</h2>
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" required><br><br>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" required><br><br>
+        <button class="button" onclick="login()">Đăng nhập</button>
     </div>
 
     <!-- Bước 2: Chọn nghề nghiệp -->
@@ -113,9 +113,32 @@
     </div>
 
     <script>
-        function goToStep2() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
+        // Kho thông tin đăng nhập
+        const userDatabase = {
+            "1": "a",
+            "2": "a",
+            "3": "a",
+            "4": "a",
+            "5": "a",
+            "6": "a",
+            "7": "a",
+            "8": "a",
+            "9": "a",
+            "10": "a"
+        };
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Kiểm tra đăng nhập
+            if (userDatabase[username] === password) {
+                alert("Đăng nhập thành công!");
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.remove('hidden');
+            } else {
+                alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+            }
         }
 
         function selectJob(job) {
