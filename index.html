@@ -135,7 +135,7 @@
                             <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
                             <td>Mức lương:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
-                            <td><button class="btn btn-primary" onclick="addExtraJob(this)">Thêm việc làm</button></td>
+                            <td><button class="btn btn-primary" onclick="addRow(this, 'extra-jobs-container', 'Việc làm thêm', 'Mức lương')">Thêm việc làm</button></td>
                         </tr>
                     </table>
                 </div>
@@ -150,7 +150,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
                             <td>Số lượng:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
-                            <td><button class="btn btn-primary" onclick="addStock(this)">Thêm mã cổ phiếu</button></td>
+                            <td><button class="btn btn-primary" onclick="addRow(this, 'stocks-container', 'Mã', 'Giá mỗi đơn vị', 'Số lượng')">Thêm mã cổ phiếu</button></td>
                         </tr>
                     </table>
                 </div>
@@ -165,7 +165,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
                             <td>Dòng tiền:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addRealEstate(this)">Thêm mã bất động sản</button></td>
+                            <td><button class="btn btn-primary" onclick="addRow(this, 'real-estate-container', 'Mã', 'Tiền cọc', 'Dòng tiền')">Thêm mã bất động sản</button></td>
                         </tr>
                     </table>
                 </div>
@@ -180,7 +180,7 @@
                             <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
                             <td>Dòng tiền:</td>
                             <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addBusiness(this)">Thêm mã doanh nghiệp</button></td>
+                            <td><button class="btn btn-primary" onclick="addRow(this, 'business-container', 'Mã', 'Tiền cọc', 'Dòng tiền')">Thêm mã doanh nghiệp</button></td>
                         </tr>
                     </table>
                 </div>
@@ -200,72 +200,22 @@
 </div>
 
 <script>
-    function addExtraJob(button) {
+    function addRow(button, containerId, ...placeholders) {
         const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>Việc làm thêm:</td>
-            <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
-            <td>Mức lương:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
-            <td>
-                <button class="btn btn-primary" onclick="addExtraJob(this)">Thêm việc làm</button>
-                <button class="btn btn-danger" onclick="removeRow(this)">Xoá việc làm</button>
-            </td>
-        `;
-        button.closest('table').appendChild(row);
-        button.style.display = 'none';
-    }
+        placeholders.forEach((placeholder, index) => {
+            const cell = document.createElement('td');
+            cell.innerHTML = `<input type="text" class="form-control" placeholder="${placeholder}">`;
+            row.appendChild(cell);
+        });
 
-    function addStock(button) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>Mã:</td>
-            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-            <td>Giá mỗi đơn vị:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
-            <td>Số lượng:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
-            <td>
-                <button class="btn btn-primary" onclick="addStock(this)">Thêm mã cổ phiếu</button>
-                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã cổ phiếu</button>
-            </td>
+        // Add buttons
+        const cell = document.createElement('td');
+        cell.innerHTML = `
+            <button class="btn btn-primary" onclick="addRow(this, '${containerId}', ${placeholders.map(p => `'${p}'`).join(', ')})">Thêm</button>
+            <button class="btn btn-danger" onclick="removeRow(this)">Xoá</button>
         `;
-        button.closest('table').appendChild(row);
-        button.style.display = 'none';
-    }
+        row.appendChild(cell);
 
-    function addRealEstate(button) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>Mã:</td>
-            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-            <td>Tiền cọc:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
-            <td>Dòng tiền:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-            <td>
-                <button class="btn btn-primary" onclick="addRealEstate(this)">Thêm mã bất động sản</button>
-                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã bất động sản</button>
-            </td>
-        `;
-        button.closest('table').appendChild(row);
-        button.style.display = 'none';
-    }
-
-    function addBusiness(button) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>Mã:</td>
-            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-            <td>Tiền cọc:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
-            <td>Dòng tiền:</td>
-            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-            <td>
-                <button class="btn btn-primary" onclick="addBusiness(this)">Thêm mã doanh nghiệp</button>
-                <button class="btn btn-danger" onclick="removeRow(this)">Xoá mã doanh nghiệp</button>
-            </td>
-        `;
         button.closest('table').appendChild(row);
         button.style.display = 'none';
     }
@@ -285,6 +235,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 
         </div>
