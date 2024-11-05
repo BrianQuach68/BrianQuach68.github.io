@@ -1,5 +1,103 @@
-<script>
-	let name = 'sir';
-</script>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng Nghề Nghiệp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
 
-<h1>Hello {tttttttttttttttttttttttttttttt}!</h1>
+    <div id="step1">
+        <h2>Bước 1: Nhập thông tin</h2>
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" required><br><br>
+        <label for="phone">Số điện thoại:</label>
+        <input type="text" id="phone" required><br><br>
+        <button class="button" onclick="goToStep2()">Tiếp tục</button>
+    </div>
+
+    <div id="step2" class="hidden">
+        <h2>Bước 2: Chọn nghề nghiệp</h2>
+        <div id="jobs">
+            <button class="button" onclick="selectJob('Kỹ sư phần mềm')">Kỹ sư phần mềm</button>
+            <button class="button" onclick="selectJob('Nhà thiết kế đồ họa')">Nhà thiết kế đồ họa</button>
+            <button class="button" onclick="selectJob('Chuyên viên marketing')">Chuyên viên marketing</button>
+            <button class="button" onclick="selectJob('Giáo viên')">Giáo viên</button>
+            <button class="button" onclick="selectJob('Bác sĩ')">Bác sĩ</button>
+            <button class="button" onclick="selectJob('Luật sư')">Luật sư</button>
+            <button class="button" onclick="selectJob('Nhà báo')">Nhà báo</button>
+            <button class="button" onclick="selectJob('Nhà phát triển web')">Nhà phát triển web</button>
+            <button class="button" onclick="selectJob('Kế toán')">Kế toán</button>
+            <button class="button" onclick="selectJob('Kỹ sư cơ khí')">Kỹ sư cơ khí</button>
+            <button class="button" onclick="selectJob('Nhân viên bán hàng')">Nhân viên bán hàng</button>
+            <button class="button" onclick="selectJob('Nhà khoa học dữ liệu')">Nhà khoa học dữ liệu</button>
+        </div>
+    </div>
+
+    <div id="step3" class="hidden">
+        <h2>Bước 3: Mô tả nghề nghiệp</h2>
+        <p id="jobDescription"></p>
+        <button class="button" onclick="resetApp()">Quay lại</button>
+    </div>
+
+    <script>
+        function goToStep2() {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
+        }
+
+        function selectJob(job) {
+            const jobDescriptions = {
+                'Kỹ sư phần mềm': 'Phát triển và bảo trì phần mềm.',
+                'Nhà thiết kế đồ họa': 'Tạo ra các sản phẩm hình ảnh cho truyền thông.',
+                'Chuyên viên marketing': 'Lập kế hoạch và thực hiện các chiến dịch marketing.',
+                'Giáo viên': 'Giáo dục và truyền đạt kiến thức cho học sinh.',
+                'Bác sĩ': 'Chăm sóc sức khỏe và điều trị bệnh nhân.',
+                'Luật sư': 'Tư vấn pháp lý và đại diện cho khách hàng trong các vụ án.',
+                'Nhà báo': 'Thu thập, viết và phát sóng thông tin.',
+                'Nhà phát triển web': 'Xây dựng và duy trì trang web.',
+                'Kế toán': 'Quản lý tài chính và lập báo cáo tài chính.',
+                'Kỹ sư cơ khí': 'Thiết kế và phát triển các thiết bị cơ khí.',
+                'Nhân viên bán hàng': 'Bán sản phẩm và dịch vụ cho khách hàng.',
+                'Nhà khoa học dữ liệu': 'Phân tích và khai thác dữ liệu để đưa ra quyết định.',
+            };
+            document.getElementById('jobDescription').innerText = jobDescriptions[job];
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+
+        function resetApp() {
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+        }
+    </script>
+
+</body>
+</html>
