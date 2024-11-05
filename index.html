@@ -25,10 +25,27 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .tab:hover {
+            background-color: #218838;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Bước 1: Nhập thông tin cá nhân -->
     <div id="step1">
         <h2>Bước 1: Nhập thông tin</h2>
         <label for="name">Họ và tên:</label>
@@ -38,64 +55,80 @@
         <button class="button" onclick="goToStep2()">Tiếp tục</button>
     </div>
 
+    <!-- Bước 2: Chọn nghề nghiệp -->
     <div id="step2" class="hidden">
         <h2>Bước 2: Chọn nghề nghiệp</h2>
         <div id="jobs">
-            <button class="button" onclick="selectJob('Kỹ sư phần mềm')">Kỹ sư phần mềm</button>
-            <button class="button" onclick="selectJob('Nhà thiết kế đồ họa')">Nhà thiết kế đồ họa</button>
-            <button class="button" onclick="selectJob('Chuyên viên marketing')">Chuyên viên marketing</button>
-            <button class="button" onclick="selectJob('Giáo viên')">Giáo viên</button>
             <button class="button" onclick="selectJob('Bác sĩ')">Bác sĩ</button>
+            <button class="button" onclick="selectJob('Y tá')">Y tá</button>
+            <button class="button" onclick="selectJob('Kỹ sư công nghệ thông tin')">Kỹ sư công nghệ thông tin</button>
+            <button class="button" onclick="selectJob('Giảng viên')">Giảng viên</button>
+            <button class="button" onclick="selectJob('Chăm sóc khách hàng')">Chăm sóc khách hàng</button>
+            <button class="button" onclick="selectJob('Giám đốc sản xuất')">Giám đốc sản xuất</button>
+            <button class="button" onclick="selectJob('Giám đốc bán hàng')">Giám đốc bán hàng</button>
             <button class="button" onclick="selectJob('Luật sư')">Luật sư</button>
-            <button class="button" onclick="selectJob('Nhà báo')">Nhà báo</button>
-            <button class="button" onclick="selectJob('Nhà phát triển web')">Nhà phát triển web</button>
+            <button class="button" onclick="selectJob('Chuyên viên tư vấn')">Chuyên viên tư vấn</button>
             <button class="button" onclick="selectJob('Kế toán')">Kế toán</button>
-            <button class="button" onclick="selectJob('Kỹ sư cơ khí')">Kỹ sư cơ khí</button>
-            <button class="button" onclick="selectJob('Nhân viên bán hàng')">Nhân viên bán hàng</button>
-            <button class="button" onclick="selectJob('Nhà khoa học dữ liệu')">Nhà khoa học dữ liệu</button>
+            <button class="button" onclick="selectJob('Kiến trúc sư')">Kiến trúc sư</button>
+            <button class="button" onclick="selectJob('Nhà báo')">Nhà báo</button>
         </div>
     </div>
 
+    <!-- Bước 3: Chọn thẻ tài chính -->
     <div id="step3" class="hidden">
-        <h2>Bước 3: Mô tả nghề nghiệp</h2>
-        <p id="jobDescription"></p>
-        <button class="button" onclick="resetApp()">Quay lại</button>
+        <h2>Bước 3: Thông tin tài chính cho nghề nghiệp đã chọn</h2>
+        <div>
+            <button class="tab" onclick="showTab('income')">Thu nhập và chi phí</button>
+            <button class="tab" onclick="showTab('cashFlow')">Dòng tiền</button>
+            <button class="tab" onclick="showTab('balance')">Cân đối tài sản</button>
+        </div>
+        
+        <!-- Nội dung của từng thẻ -->
+        <div id="income" class="hidden">
+            <h3>Thu nhập và chi phí</h3>
+            <div class="input-group"><label>Lương chính:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Thu nhập phụ:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Chi phí sinh hoạt:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Chi phí đi lại:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Chi phí khác:</label> <input type="number" placeholder="VND"></div>
+        </div>
+
+        <div id="cashFlow" class="hidden">
+            <h3>Dòng tiền</h3>
+            <div class="input-group"><label>Tiền gửi ngân hàng:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Tiền mặt:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Tiền đầu tư:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Tiền cho vay:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Nợ phải trả:</label> <input type="number" placeholder="VND"></div>
+        </div>
+
+        <div id="balance" class="hidden">
+            <h3>Cân đối tài sản</h3>
+            <div class="input-group"><label>Tài sản cố định:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Tài sản lưu động:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Tài sản vô hình:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Giá trị đầu tư:</label> <input type="number" placeholder="VND"></div>
+            <div class="input-group"><label>Giá trị bảo hiểm:</label> <input type="number" placeholder="VND"></div>
+        </div>
     </div>
 
     <script>
         function goToStep2() {
-            const step1 = document.getElementById('step1');
-            const step2 = document.getElementById('step2');
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
         }
 
         function selectJob(job) {
-            const jobDescriptions = {
-                'Kỹ sư phần mềm': 'Phát triển và bảo trì phần mềm.',
-                'Nhà thiết kế đồ họa': 'Tạo ra các sản phẩm hình ảnh cho truyền thông.',
-                'Chuyên viên marketing': 'Lập kế hoạch và thực hiện các chiến dịch marketing.',
-                'Giáo viên': 'Giáo dục và truyền đạt kiến thức cho học sinh.',
-                'Bác sĩ': 'Chăm sóc sức khỏe và điều trị bệnh nhân.',
-                'Luật sư': 'Tư vấn pháp lý và đại diện cho khách hàng trong các vụ án.',
-                'Nhà báo': 'Thu thập, viết và phát sóng thông tin.',
-                'Nhà phát triển web': 'Xây dựng và duy trì trang web.',
-                'Kế toán': 'Quản lý tài chính và lập báo cáo tài chính.',
-                'Kỹ sư cơ khí': 'Thiết kế và phát triển các thiết bị cơ khí.',
-                'Nhân viên bán hàng': 'Bán sản phẩm và dịch vụ cho khách hàng.',
-                'Nhà khoa học dữ liệu': 'Phân tích và khai thác dữ liệu để đưa ra quyết định.',
-            };
-            document.getElementById('jobDescription').innerText = jobDescriptions[job];
             document.getElementById('step2').classList.add('hidden');
             document.getElementById('step3').classList.remove('hidden');
         }
 
-        function resetApp() {
-            document.getElementById('step1').classList.remove('hidden');
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('name').value = '';
-            document.getElementById('phone').value = '';
+        function showTab(tabId) {
+            const tabs = ['income', 'cashFlow', 'balance'];
+            tabs.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
         }
     </script>
 
