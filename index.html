@@ -1,39 +1,58 @@
 <script>
   let step = 1;
-  let selectedCareer = "";
+  let username = "";
+  let password = "";
+  let loginMessage = "";
 
-  // Tạo thông tin đăng nhập từ 1 đến 10, mật khẩu là "a"
   const users = Array.from({ length: 10 }, (_, i) => ({
     username: (i + 1).toString(),
     password: "a"
   }));
 
-  // Danh sách nghề nghiệp
   const careers = [
     "Bác sĩ", "Y tá", "Kỹ sư công nghệ thông tin", "Giảng viên",
     "Chăm sóc khách hàng", "Giám đốc sản xuất", "Giám đốc bán hàng",
     "Luật sư", "Tư vấn viên", "Chuyên viên nhân sự", "Chuyên gia tài chính", "Thư ký"
   ];
 
-  // Hàm chuyển bước khi chọn nghề nghiệp
+  let selectedCareer = "";
+
+  function handleLogin() {
+    const user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      loginMessage = "Bạn đã đăng nhập thành công";
+      step = 2;
+    } else {
+      loginMessage = "Thông tin đăng nhập chưa đúng";
+    }
+  }
+
   function selectCareer(career) {
     selectedCareer = career;
-    step = 3;  // Chuyển đến bước 3 sau khi chọn nghề nghiệp
+    step = 3;
   }
 </script>
 
-<!-- Bước 1: Hiển thị thông tin đăng nhập (chỉ để minh họa, có thể ẩn phần này khi triển khai) -->
 {#if step === 1}
-  <h2>Thông tin đăng nhập</h2>
-  <ul>
-    {#each users as user}
-      <li>Tên đăng nhập: {user.username}, Mật khẩu: {user.password}</li>
-    {/each}
-    <button on:click={() => step = 2}>Tiếp tục</button>
-  </ul>
+  <h2>Đăng nhập</h2>
+  <div class="login-form">
+    <input
+      type="text"
+      bind:value={username}
+      placeholder="Tên đăng nhập"
+      required
+    />
+    <input
+      type="password"
+      bind:value={password}
+      placeholder="Mật khẩu"
+      required
+    />
+    <button on:click={handleLogin}>Đăng nhập</button>
+    <p>{loginMessage}</p>
+  </div>
 {/if}
 
-<!-- Bước 2: Giao diện chọn nghề nghiệp -->
 {#if step === 2}
   <h2>Chọn nghề nghiệp</h2>
   <div class="career-grid">
@@ -43,7 +62,6 @@
   </div>
 {/if}
 
-<!-- Bước 3: Giao diện các thẻ -->
 {#if step === 3}
   <h2>Nghề nghiệp: {selectedCareer}</h2>
   <div class="tabs">
@@ -54,7 +72,33 @@
 {/if}
 
 <style>
-  /* Định dạng cho bước 2: Sắp xếp 4x3 các nút nghề nghiệp */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    margin: auto;
+  }
+
+  input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  p {
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+  }
+
   .career-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -63,12 +107,6 @@
     margin: auto;
   }
 
-  button {
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  /* Định dạng cho các thẻ */
   .tabs {
     display: flex;
     justify-content: space-around;
