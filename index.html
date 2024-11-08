@@ -1,306 +1,90 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ứng dụng Nghề Nghiệp</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .hidden {
-            display: none;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        .tab {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .tab:hover {
-            background-color: #218838;
-        }
-        .input-group {
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Bước 1: Đăng nhập -->
-    <div id="step1">
-        <h2>Đăng nhập: </h2>
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" required><br><br>
-        <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" required><br><br>
-        <button class="button" onclick="login()">Đăng nhập</button>
-    </div>
-
-    <!-- Bước 2: Chọn nghề nghiệp -->
-    <div id="step2" class="hidden">
-        <h2> Hãy chọn một nghề nghiệp: </h2>
-        <div id="jobs">
-            <button class="button" onclick="selectJob('Bác sĩ')">Bác sĩ</button>
-            <button class="button" onclick="selectJob('Y tá')">Y tá</button>
-            <button class="button" onclick="selectJob('Kỹ sư công nghệ thông tin')">Kỹ sư công nghệ thông tin</button>
-            <button class="button" onclick="selectJob('Giảng viên')">Giảng viên</button>
-            <button class="button" onclick="selectJob('Chăm sóc khách hàng')">Chăm sóc khách hàng</button>
-            <button class="button" onclick="selectJob('Giám đốc sản xuất')">Giám đốc sản xuất</button>
-            <button class="button" onclick="selectJob('Giám đốc bán hàng')">Giám đốc bán hàng</button>
-            <button class="button" onclick="selectJob('Luật sư')">Luật sư</button>
-            <button class="button" onclick="selectJob('Chuyên viên tư vấn')">Chuyên viên tư vấn</button>
-            <button class="button" onclick="selectJob('Kế toán')">Kế toán</button>
-            <button class="button" onclick="selectJob('Kiến trúc sư')">Kiến trúc sư</button>
-            <button class="button" onclick="selectJob('Nhà báo')">Nhà báo</button>
-        </div>
-    </div>
-
-    <!-- Dưới đây là thông tin tài chính của bạn: -->
-    <div id="step3" class="hidden">
-        <h2>Thông tin tài chính cho nghề nghiệp đã chọn: </h2>
-        <div>
-            <button class="tab" onclick="showTab('income')">Thu nhập và chi phí</button>
-            <button class="tab" onclick="showTab('cashFlow')">Dòng tiền</button>
-            <button class="tab" onclick="showTab('balance')">Cân đối tài sản</button>
-        </div>
-        
-        <!-- Nội dung của từng thẻ -->
-        <div 
-
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Tài chính</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-<div class="container mt-5">
-    <!-- Tabs -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="income-expense-tab" data-bs-toggle="tab" data-bs-target="#income-expense" type="button" role="tab">Thu nhập và chi phí</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="cash-flow-tab" data-bs-toggle="tab" data-bs-target="#cash-flow" type="button" role="tab">Dòng tiền</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="balance-sheet-tab" data-bs-toggle="tab" data-bs-target="#balance-sheet" type="button" role="tab">Cân đối tài sản</button>
-        </li>
-    </ul>
-
-    <!-- Tab Contents -->
-    <div class="tab-content" id="myTabContent">
-        <!-- Thu nhập và chi phí Tab -->
-        <div class="tab-pane fade show active" id="income-expense" role="tabpanel">
-            <div class="mt-4">
-                <h4>Thu nhập từ nghề</h4>
-                <table class="table">
-                    <tr>
-                        <td>Lương cá nhân:</td>
-                        <td><input type="number" class="form-control" placeholder="Nhập số tiền"></td>
-                    </tr>
-                    <tr>
-                        <td>Lương bạn đời:</td>
-                        <td><input type="number" class="form-control" placeholder="Nhập số tiền"></td>
-                    </tr>
-                </table>
-
-                <h4>Thu nhập làm thêm</h4>
-                <div id="extra-jobs-container">
-                    <table class="table">
-                        <tr>
-                            <td>Việc làm thêm:</td>
-                            <td><input type="text" class="form-control" placeholder="Nhập việc làm"></td>
-                            <td>Mức lương:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập mức lương"></td>
-                            <td><button class="btn btn-primary" onclick="addRow(this, 'extra-jobs-container', 'Việc làm thêm', 'Mức lương')">Thêm việc làm</button></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h4>Tài chính</h4>
-                <div id="stocks-container">
-                    <table class="table">
-                        <tr>
-                            <td>Mã:</td>
-                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-                            <td>Giá mỗi đơn vị:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập giá"></td>
-                            <td>Số lượng:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập số lượng"></td>
-                            <td><button class="btn btn-primary" onclick="addRow(this, 'stocks-container', 'Mã', 'Giá mỗi đơn vị', 'Số lượng')">Thêm mã cổ phiếu</button></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h4>Bất động sản</h4>
-                <div id="real-estate-container">
-                    <table class="table">
-                        <tr>
-                            <td>Mã:</td>
-                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-                            <td>Tiền cọc:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
-                            <td>Dòng tiền:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addRow(this, 'real-estate-container', 'Mã', 'Tiền cọc', 'Dòng tiền')">Thêm mã bất động sản</button></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h4>Doanh nghiệp</h4>
-                <div id="business-container">
-                    <table class="table">
-                        <tr>
-                            <td>Mã:</td>
-                            <td><input type="text" class="form-control" placeholder="Nhập mã"></td>
-                            <td>Tiền cọc:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập tiền cọc"></td>
-                            <td>Dòng tiền:</td>
-                            <td><input type="number" class="form-control" placeholder="Nhập dòng tiền"></td>
-                            <td><button class="btn btn-primary" onclick="addRow(this, 'business-container', 'Mã', 'Tiền cọc', 'Dòng tiền')">Thêm mã doanh nghiệp</button></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Dòng tiền Tab -->
-        <div class="tab-pane fade" id="cash-flow" role="tabpanel">
-            <p class="mt-4">Mục nhập dữ liệu Dòng tiền.</p>
-        </div>
-
-        <!-- Cân đối tài sản Tab -->
-        <div class="tab-pane fade" id="balance-sheet" role="tabpanel">
-            <p class="mt-4">Mục nhập dữ liệu Cân đối tài sản.</p>
-        </div>
-    </div>
-</div>
-
 <script>
-    function addRow(button, containerId, ...placeholders) {
-        const row = document.createElement('tr');
-        placeholders.forEach((placeholder, index) => {
-            const cell = document.createElement('td');
-            cell.innerHTML = `<input type="text" class="form-control" placeholder="${placeholder}">`;
-            row.appendChild(cell);
-        });
+  let step = 1;
+  let selectedCareer = "";
 
-        // Add buttons
-        const cell = document.createElement('td');
-        cell.innerHTML = `
-            <button class="btn btn-primary" onclick="addRow(this, '${containerId}', ${placeholders.map(p => `'${p}'`).join(', ')})">Thêm</button>
-            <button class="btn btn-danger" onclick="removeRow(this)">Xoá</button>
-        `;
-        row.appendChild(cell);
+  // Tạo thông tin đăng nhập từ 1 đến 10, mật khẩu là "a"
+  const users = Array.from({ length: 10 }, (_, i) => ({
+    username: (i + 1).toString(),
+    password: "a"
+  }));
 
-        button.closest('table').appendChild(row);
-        button.style.display = 'none';
-    }
+  // Danh sách nghề nghiệp
+  const careers = [
+    "Bác sĩ", "Y tá", "Kỹ sư công nghệ thông tin", "Giảng viên",
+    "Chăm sóc khách hàng", "Giám đốc sản xuất", "Giám đốc bán hàng",
+    "Luật sư", "Tư vấn viên", "Chuyên viên nhân sự", "Chuyên gia tài chính", "Thư ký"
+  ];
 
-    function removeRow(button) {
-        const row = button.closest('tr');
-        const table = row.closest('table');
-        row.remove();
-
-        // Hiển thị lại nút "Thêm" trên hàng trên nếu có
-        const lastRow = table.querySelector('tr:last-child');
-        const addButton = lastRow.querySelector('.btn-primary');
-        if (addButton) addButton.style.display = 'inline-block';
-    }
+  // Hàm chuyển bước khi chọn nghề nghiệp
+  function selectCareer(career) {
+    selectedCareer = career;
+    step = 3;  // Chuyển đến bước 3 sau khi chọn nghề nghiệp
+  }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<!-- Bước 1: Hiển thị thông tin đăng nhập (chỉ để minh họa, có thể ẩn phần này khi triển khai) -->
+{#if step === 1}
+  <h2>Thông tin đăng nhập</h2>
+  <ul>
+    {#each users as user}
+      <li>Tên đăng nhập: {user.username}, Mật khẩu: {user.password}</li>
+    {/each}
+    <button on:click={() => step = 2}>Tiếp tục</button>
+  </ul>
+{/if}
 
+<!-- Bước 2: Giao diện chọn nghề nghiệp -->
+{#if step === 2}
+  <h2>Chọn nghề nghiệp</h2>
+  <div class="career-grid">
+    {#each careers as career}
+      <button on:click={() => selectCareer(career)}>{career}</button>
+    {/each}
+  </div>
+{/if}
 
+<!-- Bước 3: Giao diện các thẻ -->
+{#if step === 3}
+  <h2>Nghề nghiệp: {selectedCareer}</h2>
+  <div class="tabs">
+    <div class="tab">THU CHI</div>
+    <div class="tab">DÒNG TIỀN</div>
+    <div class="tab">CÂN ĐỐI</div>
+  </div>
+{/if}
 
-        </div>
+<style>
+  /* Định dạng cho bước 2: Sắp xếp 4x3 các nút nghề nghiệp */
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
 
-        <div id="cashFlow" class="hidden">
-            <h3>Dòng tiền</h3>
-            <div class="input-group"><label>Tiền gửi ngân hàng:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Tiền mặt:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Tiền đầu tư:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Tiền cho vay:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Nợ phải trả:</label> <input type="number" placeholder="VND"></div>
-        </div>
+  button {
+    padding: 10px;
+    font-size: 16px;
+  }
 
-        <div id="balance" class="hidden">
-            <h3>Cân đối tài sản</h3>
-            <div class="input-group"><label>Tài sản cố định:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Tài sản lưu động:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Tài sản vô hình:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Giá trị đầu tư:</label> <input type="number" placeholder="VND"></div>
-            <div class="input-group"><label>Giá trị bảo hiểm:</label> <input type="number" placeholder="VND"></div>
-        </div>
-    </div>
+  /* Định dạng cho các thẻ */
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
 
-    <script>
-        // Kho thông tin đăng nhập
-        const userDatabase = {
-            "1": "a",
-            "2": "a",
-            "3": "a",
-            "4": "a",
-            "5": "a",
-            "6": "a",
-            "7": "a",
-            "8": "a",
-            "9": "a",
-            "10": "a"
-        };
+  .tab {
+    padding: 10px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+  }
 
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Kiểm tra đăng nhập
-            if (userDatabase[username] === password) {
-                alert("Đăng nhập thành công!");
-                document.getElementById('step1').classList.add('hidden');
-                document.getElementById('step2').classList.remove('hidden');
-            } else {
-                alert("Tên đăng nhập hoặc mật khẩu không đúng!");
-            }
-        }
-
-        function selectJob(job) {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
-        }
-
-        function showTab(tabId) {
-            const tabs = ['income', 'cashFlow', 'balance'];
-            tabs.forEach(id => {
-                document.getElementById(id).classList.add('hidden');
-            });
-            document.getElementById(tabId).classList.remove('hidden');
-        }
-    </script>
-
-</body>
-</html>
+  h2 {
+    text-align: center;
+  }
+</style>
